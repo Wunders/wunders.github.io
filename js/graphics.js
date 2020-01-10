@@ -5,7 +5,7 @@ var letterLines;
 var defaultPos;
 var randomVars;
 var geometry, geometry2, textGeometry, material, line1, line2;
-var word = "BrettBrower";
+var word = "Brett";
 
 var mousex = 0;
 var mousey = 0;
