@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <title>X this way -----></title>
+</head>
+<style>
+    body {
+        background-color: #000000;
+        display: relative;
+    }
+    .side {
+        height: 100%;
+        width: 200px;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        padding-top: 30px;
+    }
+    .side a {
+        color: #808080;
+        text-decoration: none;
+        font-family: Lato;
+        font-size: 2em;
+        padding-left: 30px;
+        padding: 30px 6px 30px 30px;
+        display: block;
+    }
+
+    .side a:hover {
+        color: #e6e6e6;
+    }
+
+    #bottominfo {
+        color: #808080;
+        position: absolute;
+        top: 75%;
+        width: 100%;
+        text-align: center;
+        display: block;
+        font-size: 3em;
+    }
+
+    #topinfo {
+        color: #808080;
+        position: absolute;
+        top: 25%;
+        width: 100%;
+        text-align: center;
+        display: block;
+        font-size: 3em;
+    }
+
+    #aboutTitle {
+        color: #808080;
+        background-color: aqua;
+        position: absolute;
+        top: 30%;
+        width: auto;
+        margin-left: 55%;
+        text-align: center;
+        font-size: 3em;
+        display: none;
+    }
+
+    #aboutInfo {
+        color: #808080;
+        background-color: aqua;
+        position: absolute;
+        top: 40%;
+        width: 500px;
+        margin-left: 50%;
+        text-align: center;
+        font-size: 2em;
+        display: none;
+    }
+
+    #brettPic {
+        top: 30%;
+        border-radius: 50%;
+        display: none;
+    }
+</style>
+<script type="text/javascript" src="js/three.js"></script>
+<script type="text/javascript" src="js/graphics.js"></script>
+
+<body>
+    <div class="side">
+        <a href="#welcome" onclick="showIntro()">Home</a>
+        <a href="#about" onclick="showAbout()">About Me</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <div id="topinfo">
+        Hi! My name is:
+    </div>
+
+    <div id="bottominfo">
+        I'm a Software Engineer at Amazon
+        <br>
+        I like solving problems with code
+    </div>
+
+    <img id="brettPic" src="myPicture.png">
+
+    <div id="aboutTitle">
+        Brett Brower
+        <br>
+    </div>
+
+    <div id="aboutInfo">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+</body>
+<script>
+    function showAbout() {
+      var graphic = document.getElementById("graphic");
+      var topinfo = document.getElementById("topinfo");
+      var bottominfo = document.getElementById("bottominfo");
+      var aboutTitle  = document.getElementById("aboutTitle");
+      var aboutInfo  = document.getElementById("aboutInfo");
+      var brettPic  = document.getElementById("brettPic");
+      graphic.style.display = "none";
+      topinfo.style.display = "none";
+      bottominfo.style.display = "none";
+      aboutTitle.style.display = "block";
+      aboutInfo.style.display = "block";
+      brettPic.style.display = "block";
+    }
+    function showIntro() {
+      var graphic = document.getElementById("graphic");
+      var topinfo = document.getElementById("topinfo");
+      var bottominfo = document.getElementById("bottominfo");
+      var aboutTitle  = document.getElementById("aboutTitle");
+      var aboutInfo  = document.getElementById("aboutInfo");
+      var brettPic  = document.getElementById("brettPic");
+      graphic.style.display = "block";
+      graphic.style.display = "block";
+      topinfo.style.display = "block";
+      bottominfo.style.display = "block";
+      aboutTitle.style.display = "none";
+      aboutInfo.style.display = "none"
+      brettPic.style.display = "none";
+    }
+</script>
+
+</html>
