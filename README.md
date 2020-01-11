@@ -1,3 +1,3 @@
-# This is @Wunders Personal Website
+# Personal Website
 
-Check it out at [https://brettbrower.com/](https://brettbrower.com/)
+Check it out at [https://brettbrower.com/](https://brettbrower.com/)!

@@ -6,6 +6,7 @@ var defaultPos;
 var randomVars;
 var geometry, geometry2, textGeometry, material, line1, line2;
 var word = "Brett";
+var transitioning = false;
 
 var mousex = 0;
 var mousey = 0;
@@ -101,9 +102,9 @@ function drawScene() {
         scene.add ( letterLines[i] );
     }
 
-	renderer = new THREE.WebGLRenderer( { antialias: true } );
+    var canvas = document.getElementById("canvasID");
+	renderer = new THREE.WebGLRenderer( { canvas: canvas } );
     renderer.setSize( window.innerWidth, window.innerHeight );
-    renderer.domElement.id = 'graphic';
 	document.body.appendChild( renderer.domElement );
 
     // Init mousemove
@@ -113,6 +114,9 @@ function drawScene() {
 }
 
 function onDocumentMouseMove ( event ) {
+    if (transitioning) {
+        return;
+    }
     event.preventDefault();
 
     mousex = ( event.clientX / window.innerWidth ) * 2 - 1;
@@ -134,10 +138,8 @@ function animate() {
             line2.position.y = Math.pow(mousey*10, 2); 
         }
     
-    // rotate individual letters
+    // position and rotate individual letters
     for (var i = 0; i < letterLines.length; i++) {
-        //letterLines[i].rotation.x = - mousey * Math.random();
-        //letterLines[i].rotation.y = mousex * Math.random();
         letterLines[i].position.x = defaultPos[i] + randomVars[i*3] * 0.1 * Math.pow((mousey*40), 2) - 0.1 - randomVars[i];
         letterLines[i].position.y = randomVars[i*3+1] * 0.1 * Math.pow((mousey*40), 2) - 0.1 - randomVars[i];
         letterLines[i].position.z = randomVars[i*3+2] * 0.1 * Math.pow((mousey*40), 2) - 0.1 - randomVars[i];
@@ -147,4 +149,79 @@ function animate() {
 
 	renderer.render( scene, camera );
 
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function transitionOut() {
+    // Set some document variables
+    var canvasID = document.getElementById("canvasID");
+    var clickbox = document.getElementById("clickbox");
+    var topinfo = document.getElementById("topinfo");
+    var bottominfo = document.getElementById("bottominfo");
+    var aboutTitle  = document.getElementById("aboutTitle");
+    var aboutInfo  = document.getElementById("aboutInfo");
+    var brettPic  = document.getElementById("brettPic");
+    var reloadpage = document.getElementById("reloadpage");
+    var mouseoffsetx = mousex;
+    var mouseoffsety = mousey;
+    transitioning = true;
+    
+    // Remove the clickbox and the mouse listener
+    document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+    clickbox.style.display = "none";
+
+    // fade text
+    var start = Date.now();
+    var transitionTime = 1000;
+    while (Date.now() - start < transitionTime) {
+        percentTransition = (Date.now() - start) / transitionTime;
+        mousex = percentTransition + mouseoffsetx;
+        mousey = percentTransition + mouseoffsety;
+        topinfo.style.opacity  = 1 - percentTransition;
+        bottominfo.style.opacity  = 1 - percentTransition;
+        await sleep(10);
+    }
+
+    // fade canvas
+    start = Date.now();
+    transitionTime = 1000;
+    while (Date.now() - start < transitionTime) {
+        percentTransition = (Date.now() - start) / transitionTime;
+        mousex = percentTransition + mouseoffsetx + 1;
+        mousey = percentTransition + mouseoffsety + 1;
+        canvasID.style.opacity  = 1 - percentTransition;
+        await sleep(10);
+    }
+
+    // Remove elements after transition
+    canvasID.style.display = "none";
+    topinfo.style.display = "none";
+    bottominfo.style.display = "none";
+
+    // Introduce elements after transition
+    aboutTitle.style.opacity = 0;
+    aboutInfo.style.opacity = 0;
+    brettPic.style.opacity = 0;
+    reloadpage.style.opacity = 0;
+    aboutTitle.style.display = "block";
+    aboutInfo.style.display = "block";
+    brettPic.style.display = "block";
+    reloadpage.style.display = "block";
+    // Take a power nap
+    await sleep(250);
+
+    // Transition in the about page
+    start = Date.now();
+    transitionTime = 1500;
+    while (Date.now() - start < transitionTime) {
+        percentTransition = (Date.now() - start) / transitionTime;
+        aboutTitle.style.opacity = percentTransition;
+        aboutInfo.style.opacity = percentTransition;
+        brettPic.style.opacity = percentTransition;
+        reloadpage.style.opacity = percentTransition;
+        await sleep(10);
+    }
 }
