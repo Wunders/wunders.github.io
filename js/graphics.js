@@ -4,7 +4,6 @@ var letterGeo;
 var letterLines;
 var defaultPos;
 var randomVars;
-var geometry, geometry2, textGeometry, material, line1, line2;
 var word = "Brett";
 var transitioning = false;
 
@@ -20,15 +19,6 @@ function init() {
     camera.lookAt(0,0,0);
 
 	scene = new THREE.Scene();
-
-    // Set the geometry for the 2 lines
-    geometry1 = new THREE.Geometry()
-    geometry2 = new THREE.Geometry()
-    geometry1.vertices.push(new THREE.Vector3( -10, 0, 0) );
-    geometry1.vertices.push(new THREE.Vector3( 0, 10, 0) );
-    geometry2.vertices.push(new THREE.Vector3( 0, 10, 0) );
-    geometry2.vertices.push(new THREE.Vector3( 10, 0, 0) );
-
 
     // Load the font
     var loader = new THREE.FontLoader();
@@ -91,12 +81,6 @@ function drawScene() {
 
 	material = new THREE.LineBasicMaterial( {color: 0xFFFFFF } );
 
-    // make some lines
-    line1 = new THREE.Line( geometry1, material );
-    line2 = new THREE.Line( geometry2, material );
-    scene.add( line1 );
-    scene.add( line2 );
-
     // add the text to scene
     for (var i = 0; i < letterLines.length; i++) {
         scene.add ( letterLines[i] );
@@ -126,18 +110,6 @@ function onDocumentMouseMove ( event ) {
 function animate() {
 
     requestAnimationFrame( animate );
-        line1.position.x = - Math.pow(mousex*10, 2);
-        line2.position.x = Math.pow(mousex*10, 2);
-
-        if (mousey > 0) {
-            line1.position.y = Math.pow(mousey*10, 2);
-            line2.position.y = - Math.pow(mousey*10, 2); 
-        }
-        else {
-            line1.position.y = - Math.pow(mousey*10, 2);
-            line2.position.y = Math.pow(mousey*10, 2); 
-        }
-    
     // position and rotate individual letters
     for (var i = 0; i < letterLines.length; i++) {
         letterLines[i].position.x = defaultPos[i] + randomVars[i*3] * 0.1 * Math.pow((mousey*40), 2) - 0.1 - randomVars[i];
