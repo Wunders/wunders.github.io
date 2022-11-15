@@ -65,9 +65,10 @@ function drawScene() {
     // apply letter geometry to a wireframe
     for (var i = 0; i < letterGeo.length; i++) {
         textWireframe = new THREE.WireframeGeometry( letterGeo[i] );
-        textLines = new THREE.LineSegments( textWireframe );
+        var material = new THREE.LineBasicMaterial( { color: 0x808080, linewidth: 5 } );
+        textLines = new THREE.LineSegments( textWireframe, material );
         textLines.material.depthTest = false;
-        textLines.material.opacity = 0.5;
+        textLines.material.opacity = 0.6;
         textLines.material.transparent = true;
         // set x position
         textLines.position.x = countTotal;
@@ -79,15 +80,17 @@ function drawScene() {
         randomVars.push(Math.random() - 0.5);
     }
 
-	material = new THREE.LineBasicMaterial( {color: 0xFFFFFF } );
-
     // add the text to scene
     for (var i = 0; i < letterLines.length; i++) {
         scene.add ( letterLines[i] );
     }
 
     var canvas = document.getElementById("canvasID");
-	renderer = new THREE.WebGLRenderer( { canvas: canvas } );
+	renderer = new THREE.WebGLRenderer({
+	    canvas: canvas,
+	    alpha: true
+	});
+	renderer.setClearColor( 0xffffff, 0);
     renderer.setSize( window.innerWidth, window.innerHeight );
 	document.body.appendChild( renderer.domElement );
 
@@ -136,7 +139,7 @@ async function transitionOut() {
     var aboutTitle  = document.getElementById("aboutTitle");
     var aboutInfo  = document.getElementById("aboutInfo");
     var brettPic  = document.getElementById("brettPic");
-    var reloadpage = document.getElementById("reloadpage");
+    var blogLink = document.getElementById("blogLink");
     var mouseoffsetx = mousex;
     var mouseoffsety = mousey;
     transitioning = true;
@@ -177,11 +180,11 @@ async function transitionOut() {
     aboutTitle.style.opacity = 0;
     aboutInfo.style.opacity = 0;
     brettPic.style.opacity = 0;
-    reloadpage.style.opacity = 0;
+    blogLink.style.opacity = 0;
     aboutTitle.style.display = "block";
     aboutInfo.style.display = "block";
     brettPic.style.display = "block";
-    reloadpage.style.display = "block";
+    blogLink.style.display = "block";
     // Take a power nap
     await sleep(250);
 
@@ -193,7 +196,7 @@ async function transitionOut() {
         aboutTitle.style.opacity = percentTransition;
         aboutInfo.style.opacity = percentTransition;
         brettPic.style.opacity = percentTransition;
-        reloadpage.style.opacity = percentTransition;
+        blogLink.style.opacity = percentTransition;
         await sleep(10);
     }
 }
