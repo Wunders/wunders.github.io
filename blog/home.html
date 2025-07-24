@@ -1,49 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Brett's Blog</title>
-</head>
-
-<style>
+  <meta charset="UTF-8" />
+  <title>Brett's Blog</title>
+  <style>
     html, body {
-        background-color: #242424;
+      background-color: #242424;
+      color: #acacac;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      line-height: 1.6;
     }
-
-    h2 {
-        color: #acacac;
-        text-align: left;
-        text-indent: -3px;
-    }
-
     a {
-        color: #7e7e7e;
+      color: #7e7e7e;
+      text-decoration: none;
     }
-
+    a:hover {
+      text-decoration: underline;
+    }
+    nav {
+      background-color: #1f1f1f;
+      padding: 1rem 2ch;
+      border-bottom: 1px solid #3a3a3a;
+    }
+    nav a {
+      margin-right: 1.5rem;
+      font-weight: bold;
+    }
     .content {
-        max-width: 50%;
-        min-height: 100%;
-        padding: 2ch;
-        margin: auto;
+      max-width: 50%;
+      min-height: 100vh;
+      padding: 2ch;
+      margin: auto;
+      box-sizing: border-box;
     }
-
+    h2 {
+      text-align: left;
+      text-indent: -3px;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #acacac;
+    }
     .timestamp {
-        display: block;
-        font-size: 0.75em;
+      display: block;
+      font-size: 0.75em;
+      margin-bottom: 0.4rem;
+      color: #7e7e7e;
+      font-weight: normal;
     }
-</style>
-
+  </style>
+</head>
 <body>
-    <div class="preamble">
-        <a href="../">Home</a>
-        <a href="home.html">Blog</a>
-    </div>
 
-    <div class="content">
-        <h2>
-            <span class="timestamp">November 14th, 2022</span>
-            <a href="dont-plan.html">Do not plan for FIRE</a>
-        </h2>
-    </div>
+  <nav>
+    <a href="../">Home</a>
+    <a href="home.html">Blog</a>
+  </nav>
+
+  <main class="content">
+    <h2>
+      <span class="timestamp">November 14th, 2022</span>
+      <a href="dont-plan.html">Do Not Plan for FIRE</a>
+    </h2>
+  </main>
+
 </body>
 </html>
