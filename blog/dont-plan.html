@@ -1,44 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Why FIRE Is No Longer Trendy, and What Replaced It for Me</title>
   <style>
-    body {
+    html, body {
       background-color: #121212;
       color: #e0e0e0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
       margin: 0;
       padding: 0 2ch;
+      min-height: 100vh;
     }
-    
-    a {
-      color: #64b5f6;
-      text-decoration: none;
-    }
-    
-    a:hover {
-      text-decoration: underline;
-      color: #90caf9;
-    }
-    
+
     nav {
       background-color: #1e1e1e;
       border-bottom: 1px solid #333;
       padding: 1rem 2ch;
     }
-    
     nav a {
       font-weight: 600;
       color: #bbdefb;
       margin-right: 1.5rem;
+      text-decoration: none;
     }
-    
     nav a:hover {
       color: #e3f2fd;
+      text-decoration: underline;
     }
-    
+
+    .content {
+      max-width: 700px;
+      margin: 2rem auto 4rem;
+      padding: 2.5rem 3rem;
+      background-color: #181818;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.75);
+      box-sizing: border-box;
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      color: #e0e0e0;
+      font-weight: 700;
+    }
+
+    p {
+      margin-bottom: 1.25rem;
+      color: #d0d0d0;
+    }
+
     blockquote {
       border-left: 4px solid #64b5f6;
       background-color: #1a1a1a;
@@ -46,15 +59,20 @@
       color: #b0bec5;
       font-style: italic;
       margin: 1.5rem 0;
+      line-height: 1.5;
     }
-    
-    .content {
-      max-width: 700px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background-color: #181818;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+
+    strong {
+      color: #90caf9;
+    }
+
+    a {
+      color: #64b5f6;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #90caf9;
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -65,7 +83,7 @@
     <a href="home.html">Blog</a>
   </nav>
 
-  <div class="container">
+  <main class="content">
     <h1>Why FIRE Is No Longer Trendy, and What Replaced It for Me</h1>
 
     <p>If you're not familiar with FIRE, it's pretty self-explanatory when you expand the acronym: <strong>Financial Independence, Retire Early</strong>.</p>
@@ -107,7 +125,7 @@
     <p>Eventually, Financial Momentum gives you options. You may reach a point where you can take a break from work, start a project, change careers, or simply retire early without needing to obsess over whether you’ve hit some fixed milestone.</p>
 
     <p>The original FIRE model promised freedom at the end of a long road. Financial Momentum brings freedom closer, one month at a time.</p>
-  </div>
+  </main>
 
 </body>
 </html>
